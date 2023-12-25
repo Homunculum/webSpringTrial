@@ -1,9 +1,13 @@
 package com.homunculum.webSpringTrial.module;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
+import javax.persistence.Entity;
 import java.util.Collection;
+
+/*Her kullanıcının bir rol yetkisi olacak bu rol yetkisi ile giriş işlemi sağlanacağı için Rol modeli oluşturuyoruz.
+User class’ı ile Rol ilişkisi ManyToMany bir ilişkidir.*/
 
 @Entity
 public class Role {

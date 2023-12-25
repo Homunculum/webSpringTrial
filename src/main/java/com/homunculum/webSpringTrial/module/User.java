@@ -1,16 +1,16 @@
 package com.homunculum.webSpringTrial.module;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Collection;
 
 @Entity
-@Table(name="personal")
+@Table(name="personal") //sqlde personal tablosu oluşturuyor
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id//idye göre alma
+    @GeneratedValue(strategy = GenerationType.AUTO) //idyi otomatik oluşturma
     private long id;
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false)//tabloda kolon oluşturma
     private String email;
     @Column(name = "password")
     private String password;
@@ -22,9 +22,19 @@ public class User {
     private boolean enebled;
     @Column(name = "username")
     private String username;
-    @ManyToMany(fetch = FetchType.EAGER)
+
+
+
+    @ManyToMany(fetch = FetchType.EAGER) //@ManyToMan iki entity i bağlama,
+    // etch = FetchType.EAGER ise ilişkili verilerin ne zaman ve nasıl yükleneceğini,
+    // EAGERdiğer entity'ler) ana entity çağrıldığında hemen yüklenmesini
+    // Yani ilişkili verilerin otomatik olarak yüklenmesini ve veri tabanından çekilmesini sağlar.
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    //@JoinTable birleşik bir tablo (join table) oluşturmak için kullanılır.
+    // Bu, genellikle çoktan-çoka ilişkilerde kullanılır ve iki entity sınıfı arasındaki ilişkiyi saklamak için ara bir tablo oluşturur.
+    private Collection<Role> roles;//Role sınıfının bir koleksiyonunu tutan bir alanı tanımlar. Bu durumda, bir kullanıcının birden fazla role sahip olabileceğini ifade eder.
+    // @ManyToMany anotasyonu ile User sınıfı ile Role sınıfı arasındaki ilişki belirtilir
+    // user_id ve role_id adında bir birleşik tablo oluşturulur.
 
     public long getId() {
         return id;

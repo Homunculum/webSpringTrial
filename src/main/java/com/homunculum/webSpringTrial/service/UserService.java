@@ -25,7 +25,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
     public void saveUser(User user) {
-        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
+        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));//Arrays.asList değişken sayıda argümanları kabul eder.
         user.setEnebled(true);
         userRepository.save(user);
     }
